@@ -1,5 +1,5 @@
 import axios from "axios"
-const domain = process.env.NODE_ENV == 'production' ? 'https://poiw-warehouse-api.herokuapp.com' : 'http://localhost:3001'
+const domain = process.env.NODE_ENV == 'production' ? 'https://warehouse-api.poiw.org' : 'http://localhost:3001'
 
 export default {
 

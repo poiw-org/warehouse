@@ -1,5 +1,6 @@
 import API from "../api";
-import cnfBarcode from "cnf-barcode"
+
+
 export default class Item {
     declare _id: string;
     declare title: string;
@@ -18,14 +19,6 @@ export default class Item {
         this.checkIn = checkIn
         this.checkOut = checkOut
         this.editedBy = editedBy
-        this.barcode = cnfBarcode(_id,{
-            format: "EAN13",
-            lineColor: "#000",
-            text: (_id.match(/.{1,3}/g)).toString().replaceAll(",","-"),
-            fontSize: 14,
-            flat: true,
-            displayValue: true
-          }).getSvgDataURI();
     }
 
     public async upload(): Promise<void>{

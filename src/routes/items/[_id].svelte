@@ -6,12 +6,13 @@ export const router = browser;
 export const prerender = false;
 
 import { page } from "$app/stores";
+const { _id } = $page.params;
+
 import Item from "../../lib/entities/item"
 import Loading from "../../lib/loading.svelte"
 import auth from "../../lib/auth/authService"
 import {onMount} from "svelte"
 import API from "../../lib/api"
-const { _id } = $page.params;
 
 let isAuthenticated = false;
 
@@ -108,7 +109,13 @@ onMount(async ()=>{
     {/if}
 
     {#if !item}
+        {#if isAuthenticated}
+            <span class="hidden">{window.location = `/items/create?id=${_id}`}</span>
+            <Loading/>
+
+        {:else}
     The item with id <span class="font-bold text-lg">{_id}</span> was not found.
+        {/if}
     {/if}
     {/await}
 </div>

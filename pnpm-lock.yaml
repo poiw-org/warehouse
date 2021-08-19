@@ -5,6 +5,8 @@ specifiers:
   '@fontsource/fira-mono': ^4.2.2
   '@fortawesome/free-solid-svg-icons': ^5.15.4
   '@lukeed/uuid': ^2.0.0
+  '@sentry/browser': ^6.11.0
+  '@sentry/tracing': ^6.11.0
   '@sveltejs/adapter-netlify': ^1.0.0-next.28
   '@sveltejs/adapter-static': ^1.0.0-next.16
   '@sveltejs/kit': next
@@ -38,6 +40,8 @@ dependencies:
   '@fontsource/fira-mono': 4.5.0
   '@fortawesome/free-solid-svg-icons': 5.15.4
   '@lukeed/uuid': 2.0.0
+  '@sentry/browser': 6.11.0
+  '@sentry/tracing': 6.11.0
   '@types/axios': 0.14.0
   auth0-js: 9.16.2
   axios: 0.21.1
@@ -53,7 +57,7 @@ dependencies:
 devDependencies:
   '@sveltejs/adapter-netlify': 1.0.0-next.28
   '@sveltejs/adapter-static': 1.0.0-next.16
-  '@sveltejs/kit': 1.0.0-next.153_svelte@3.42.1
+  '@sveltejs/kit': 1.0.0-next.154_svelte@3.42.1
   '@types/cookie': 0.4.1
   autoprefixer: 10.3.1_postcss@8.3.6
   cssnano: 5.0.7_postcss@8.3.6
@@ -181,6 +185,69 @@ packages:
       picomatch: 2.3.0
     dev: true
 
+  /@sentry/browser/6.11.0:
+    resolution: {integrity: sha512-Qr2QRA0t5/S9QQqxzYKvM9W8prvmiWuldfwRX4hubovXzcXLgUi4WK0/H612wSbYZ4dNAEcQbtlxFWJNN4wxdg==}
+    engines: {node: '>=6'}
+    dependencies:
+      '@sentry/core': 6.11.0
+      '@sentry/types': 6.11.0
+      '@sentry/utils': 6.11.0
+      tslib: 1.14.1
+    dev: false
+
+  /@sentry/core/6.11.0:
+    resolution: {integrity: sha512-09TB+f3pqEq8LFahFWHO6I/4DxHo+NcS52OkbWMDqEi6oNZRD7PhPn3i14LfjsYVv3u3AESU8oxSEGbFrr2UjQ==}
+    engines: {node: '>=6'}
+    dependencies:
+      '@sentry/hub': 6.11.0
+      '@sentry/minimal': 6.11.0
+      '@sentry/types': 6.11.0
+      '@sentry/utils': 6.11.0
+      tslib: 1.14.1
+    dev: false
+
+  /@sentry/hub/6.11.0:
+    resolution: {integrity: sha512-pT9hf+ZJfVFpoZopoC+yJmFNclr4NPqPcl2cgguqCHb69DklD1NxgBNWK8D6X05qjnNFDF991U6t1mxP9HrGuw==}
+    engines: {node: '>=6'}
+    dependencies:
+      '@sentry/types': 6.11.0
+      '@sentry/utils': 6.11.0
+      tslib: 1.14.1
+    dev: false
+
+  /@sentry/minimal/6.11.0:
+    resolution: {integrity: sha512-XkZ7qrdlGp4IM/gjGxf1Q575yIbl5RvPbg+WFeekpo16Ufvzx37Mr8c2xsZaWosISVyE6eyFpooORjUlzy8EDw==}
+    engines: {node: '>=6'}
+    dependencies:
+      '@sentry/hub': 6.11.0
+      '@sentry/types': 6.11.0
+      tslib: 1.14.1
+    dev: false
+
+  /@sentry/tracing/6.11.0:
+    resolution: {integrity: sha512-9VA1/SY++WeoMQI4K6n/sYgIdRtCu9NLWqmGqu/5kbOtESYFgAt1DqSyqGCr00ZjQiC2s7tkDkTNZb38K6KytQ==}
+    engines: {node: '>=6'}
+    dependencies:
+      '@sentry/hub': 6.11.0
+      '@sentry/minimal': 6.11.0
+      '@sentry/types': 6.11.0
+      '@sentry/utils': 6.11.0
+      tslib: 1.14.1
+    dev: false
+
+  /@sentry/types/6.11.0:
+    resolution: {integrity: sha512-gm5H9eZhL6bsIy/h3T+/Fzzz2vINhHhqd92CjHle3w7uXdTdFV98i2pDpErBGNTSNzbntqOMifYEB5ENtZAvcg==}
+    engines: {node: '>=6'}
+    dev: false
+
+  /@sentry/utils/6.11.0:
+    resolution: {integrity: sha512-IOvyFHcnbRQxa++jO+ZUzRvFHEJ1cZjrBIQaNVc0IYF0twUOB5PTP6joTcix38ldaLeapaPZ9LGfudbvYvxkdg==}
+    engines: {node: '>=6'}
+    dependencies:
+      '@sentry/types': 6.11.0
+      tslib: 1.14.1
+    dev: false
+
   /@sveltejs/adapter-netlify/1.0.0-next.28:
     resolution: {integrity: sha512-FeIK5x1cV/BpVmXhPAWJD+JA6NnO7DBFJljyGqX/X/yIfNo7kRmoloU/F7zLUYLPUdGcuL8AePl7ry7VJb4IOw==}
     dependencies:
@@ -192,8 +259,8 @@ packages:
     resolution: {integrity: sha512-xGFcg+GHF0BL1fyWx2vCzlYj4S4R+Od9cF00soo1TVp/scGOi1G9grSYYW4x5H+iDn1sscoJ65OGBGWIcOgrXg==}
     dev: true
 
-  /@sveltejs/kit/1.0.0-next.153_svelte@3.42.1:
-    resolution: {integrity: sha512-WeWxMXjKvVlpNkiCX5Of6Y1C0ngUxNE2i7CutWX5pfVbGHd1ecyY4ntMlSCHCfFcdObAf9UniFc7OY7NR2tRhQ==}
+  /@sveltejs/kit/1.0.0-next.154_svelte@3.42.1:
+    resolution: {integrity: sha512-3WqdmZyTwrAnPtFI5cNLXswGiCx934tfWckS6MLbOTlN6zGtex2H9A2WZKlXRhpxtIM8XqrYlGKr1qNDBmATWQ==}
     engines: {node: ^12.20 || >=14.13}
     hasBin: true
     peerDependencies:
@@ -2150,6 +2217,10 @@ packages:
     dependencies:
       is-number: 7.0.0
     dev: true
+
+  /tslib/1.14.1:
+    resolution: {integrity: sha512-Xni35NKzjgMrwevysHTCArtLDpPvye8zV/0E4EyYn43P7/7qvQwPh9BGkHewbMulVntbigmcT7rdX3BNo9wRJg==}
+    dev: false
 
   /tslib/2.3.1:
     resolution: {integrity: sha512-77EbyPPpMz+FRFRuAFlWMtmgUWGe9UOG2Z25NqCwiIjRhOf5iKGuzSe5P2w1laq+FkRy4p+PCuVkJSGkzTEKVw==}

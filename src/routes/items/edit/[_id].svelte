@@ -39,7 +39,7 @@
                 }
             }
         )
-        if(data === true) window.location = "/"
+        if(data === true) window.location = `/items/${_id}`
         else alert("ERROR: The barcode already exists or you haven\'t filled all the required fields")
         processing = false;
 

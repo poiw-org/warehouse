@@ -11,3 +11,20 @@
 		<div class="xl:shadow-2xl xl:rounded" style="width: 100%; max-width: 1200px;" id="svelte">%svelte.body%</div>
 	</body>
 </html>
+
+<script
+  src="https://browser.sentry-cdn.com/6.11.0/bundle.min.js"
+  integrity="sha384-c+8PXtRnYfCKsSEvgtDqFeJvhjltkNLIUB1vcWKW4EleABoS4jh87UrE+1nQXg+g"
+  crossorigin="anonymous"
+></script>
+<script>
+Sentry.init({
+  dsn: "https://88ac4e151ac24f4fbfc1496a088f527a@o350531.ingest.sentry.io/5916719",
+  // this assumes your build process sets "npm_package_version" in the env
+  integrations: [new Sentry.Integrations.BrowserTracing()],
+
+  // We recommend adjusting this value in production, or using tracesSampler
+  // for finer control
+  tracesSampleRate: 1.0,
+});
+</script>

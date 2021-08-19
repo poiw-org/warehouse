@@ -37,9 +37,9 @@ import Item from "../lib/entities/item";
 </script>
 {#if !processing}
 <span id="message" class="block py-10 px-10"><b>You are ready to go!</b><br/>The barcodes will not be visible until you try to print this page.</span>
-<span id="barcodes" class="flex flex-wrap gap-14 justify-between">
+<span id="barcodes" class="flex flex-wrap justify-between items-center">
     {#each items as item}
-        <img src={item.barcode}/>
+        <img class="" src={item.barcode}/>
     {/each}
 </span>
 {:else}

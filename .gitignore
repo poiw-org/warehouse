@@ -70,4 +70,5 @@ build/Release
 *.nuxt*
 .idea/
 
-.svelte-kit/dev/generated/
+.svelte-kit
+build

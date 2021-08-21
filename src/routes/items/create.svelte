@@ -1,3 +1,6 @@
+<script context="module" lang="ts">
+	export const prerender = false;
+</script>
 <script>
     import {onMount} from "svelte"
     import auth from "../../lib/auth/authService"
@@ -18,8 +21,8 @@
 
     onMount(async ()=>{
         if(!(await auth.isAuthenticated())) window.location = "/" 
-        const id = $page.query.get("id");
-        if(id) item._id = id
+        const _id = $page.query.get("_id");
+        if(_id) item._id = _id
     })
 
     let submit = async () => {
@@ -62,10 +65,10 @@
 
 {#if !processing}
 <form on:submit={submit} class="px-4 md:px-10 py-10 flex flex-col items-start justify-start">
-    <input class="text-xl w-full" bind:value={item.title} placeholder="Title"/>
+    <input class="text-xl w-full" bind:value={item.title} placeholder="Title" required/>
     <span class="grid grid-cols-1 md:grid-cols-2 mt-5">
         <span class="flex flex-col justify-center">
-            <span class="flex items-center w-full"><span class="text-xl"><Fa icon={faBarcode}/></span><input placeholder="Barcode / ID" type="tel" bind:value={item._id} maxlength="12" class="p-4 w-full text-xl text-purple-700"/></span>
+            <span class="flex items-center w-full"><span class="text-xl"><Fa icon={faBarcode}/></span><input required placeholder="Barcode / ID" type="tel" bind:value={item._id} maxlength="12" class="p-4 w-full text-xl text-purple-700"/></span>
             {#if !item._id}
             <span on:click={getBarcode} class="cursor-pointer text-purple-700 flex items-center gap-2"><Fa icon={faRedo}/>Get unique barcode</span>
             {:else if item._id != "fetching..."}

@@ -1,32 +1,34 @@
+<script context="module" lang="ts">
+	export const prerender = false;
+</script>
 <script>
     import {onMount} from "svelte"
-    import auth from "../../../lib/auth/authService"
-    import API from "../../../lib/api"
-    import Loading from "../../../lib/loading.svelte"
+    import auth from "../../lib/auth/authService"
+    import API from "../../lib/api"
+    import Loading from "../../lib/loading.svelte"
     import Fa from 'svelte-fa'
 	import { faPencilAlt, faBarcode } from '@fortawesome/free-solid-svg-icons'
     import { page } from "$app/stores";
-    const { _id } = $page.params;
-
+    import Item from "../../lib/entities/item"
+    
     let item ={
         title: "",
         _id: "",
         shelf: "",
         description: "",
     }
+    let _id
 
     let processing = false
 
     onMount(async ()=>{
         processing = true;
-        if(!(await auth.isAuthenticated())) window.location = "/" 
+        _id = $page.query.get("_id")
+        if(!(await auth.isAuthenticated()) || !_id) window.location = "/" 
 
-        if(_id){
-            let {data} = await API.get(`/items/${_id}`)
-            item = data
-        }else{
-            window.location = "/" 
-        }
+
+         item= await Item.getById(_id, true)
+
         processing = false;
     })
 

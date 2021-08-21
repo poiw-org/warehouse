@@ -1,5 +1,5 @@
 <script context="module" lang="ts">
-	export const prerender = true;
+	export const prerender = false;
 </script>
 
 <script lang="ts">
@@ -9,18 +9,40 @@
 	import Item from "../lib/entities/item"
 	import Loading from "../lib/loading.svelte"
 	import {onMount} from "svelte"
+	import auth from "../lib/auth/authService"
+
+	let isAuthenticated = false;
 	let searchQuery = "";
 	let items: Item[];
 	let processing = false;
 	let latestItems;
+	let autoDetectBarcodes = true;
+	let detectedBarcode = false;
+
 	let search = async () => {
 		if(searchQuery === ""){
 			items = latestItems
 			return
 		}
 		let isOnlyNumbers = /^\d+$/.test(searchQuery)
-		if(isOnlyNumbers && searchQuery.length == 12){
-			window.location = `/items/${searchQuery}`
+		if(isOnlyNumbers && searchQuery.length == 12 && autoDetectBarcodes && !detectedBarcode) {
+			detectedBarcode= true;
+			processing = true;
+			try{
+				let item = await Item.getById(searchQuery, true)
+				if(item){
+					location.href = `/items?_id=${searchQuery}`
+					
+					return
+				}
+				else if(isAuthenticated) location.href = `/items/create?_id=${searchQuery}`;
+							
+				else alert(`The item with barcode ${searchQuery} doesn\'t exist.`)
+			}catch(e) {
+				alert(e)
+			}
+			processing = false
+			detectedBarcode = false
 		}
 		processing = true;
 		let {data} = await API.post(`/search`, {query: searchQuery})
@@ -29,12 +51,15 @@
 	}
 
 	onMount(async ()=>{
-		document.getElementById("search").focus()
+		setInterval(()=>{
+			document.getElementById("search").focus()
+		},1000)
 		processing = true;
 		let {data} = await API.get(`/latest`)
 		processing = false
 		latestItems = data.map(item => Item.fromJSON(item))
 		items = latestItems
+		isAuthenticated = await auth.isAuthenticated()
 	})
 
 	function shorten(text,max) {
@@ -52,6 +77,9 @@
 		<Fa icon={faSearch}/>
 		<input type="text" on:keyup={search} bind:value={searchQuery} id="search" placeholder="Type to search or enter barcode" class="w-full"/>
 	</div>
+	<span class="flex gap-2 mt-3 ml-1"><input type="checkbox" bind:checked={autoDetectBarcodes}/><p class="text-gray-400">Auto-detect barcodes and redirect to item</p></span>
+
+
 	<div>
 		{#if processing}
 		<Loading/>
@@ -63,10 +91,9 @@
 				<span class="pt-4 pb-2 tracking-wider text-gray-400">LATEST ITEMS</span>
 				{/if}
 				{#each items as item}
-					<a href={`/items/${item._id}`}><span class="p-3 bg-gray-50 rounded tracking-widest flex justify-between"><span class="inline md:hidden">{shorten(item.title,23)}</span><span class="hidden md:inline">{shorten(item.title,40)}</span><span class="flex items-center gap-2 text-sm md:text-md text-gray-600"><Fa icon={faBarcode}/>{item._id}</span></span></a>
+					<a href={`/items?_id=${item._id}`}><span class="p-3 bg-gray-50 rounded tracking-widest flex justify-between"><span class="inline md:hidden">{shorten(item.title,23)}</span><span class="hidden md:inline">{shorten(item.title,40)}</span><span class="flex items-center gap-2 text-sm md:text-md text-gray-600"><Fa icon={faBarcode}/>{item._id}</span></span></a>
 				{/each}
 			</div>
-		
 		{/if}
 	</div>
 </section>

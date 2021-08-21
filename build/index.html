@@ -9,19 +9,19 @@
 
 		
 
-		<link rel="modulepreload" href="/_app/start-0080cf22.js">
-		<link rel="modulepreload" href="/_app/chunks/vendor-76b514ea.js">
-		<link rel="modulepreload" href="/_app/pages/__layout.svelte-405c9448.js">
-		<link rel="modulepreload" href="/_app/chunks/authService-8b029167.js">
-		<link rel="modulepreload" href="/_app/pages/index.svelte-ef1d7d9f.js">
-		<link rel="modulepreload" href="/_app/chunks/item-2f306f91.js">
-		<link rel="modulepreload" href="/_app/chunks/loading-1fd50be2.js">
+		<link rel="modulepreload" href="/_app/start-22455b8d.js">
+		<link rel="modulepreload" href="/_app/chunks/vendor-973394c8.js">
+		<link rel="modulepreload" href="/_app/pages/__layout.svelte-c05f980a.js">
+		<link rel="modulepreload" href="/_app/chunks/authService-2d114afb.js">
+		<link rel="modulepreload" href="/_app/pages/index.svelte-4810a98d.js">
+		<link rel="modulepreload" href="/_app/chunks/loading-329c85c5.js">
+		<link rel="modulepreload" href="/_app/chunks/item-ac65c30b.js">
 		<link rel="stylesheet" href="/_app/assets/start-464e9d0a.css">
 		<link rel="stylesheet" href="/_app/assets/vendor-a2bb87a1.css">
-		<link rel="stylesheet" href="/_app/assets/pages/__layout.svelte-d4987512.css">
+		<link rel="stylesheet" href="/_app/assets/pages/__layout.svelte-92506a41.css">
 
 		<script type="module">
-			import { start } from "/_app/start-0080cf22.js";
+			import { start } from "/_app/start-22455b8d.js";
 			start({
 				target: document.querySelector("#svelte"),
 				paths: {"base":"","assets":""},
@@ -34,8 +34,8 @@
 					status: 200,
 					error: null,
 					nodes: [
-						import("/_app/pages/__layout.svelte-405c9448.js"),
-						import("/_app/pages/index.svelte-ef1d7d9f.js")
+						import("/_app/pages/__layout.svelte-c05f980a.js"),
+						import("/_app/pages/index.svelte-4810a98d.js")
 					],
 					page: {
 						host: location.host, // TODO this is redundant
@@ -47,26 +47,39 @@
 			});
 		</script>
 	</head>
-	<body class="flex justify-center items-center xl:py-10">
+	<body class="flex justify-center items-center xl:py-10 flex-col">
 		<div class="xl:shadow-2xl xl:rounded" style="width: 100%; max-width: 1200px;" id="svelte">
 
 
-<span class="px-10 py-10 flex justify-between items-center"><span class="flex items-center gap-3"><span class="text-xl tracking-widest font-light hidden md:inline">po/iw</span> <span class="font-bold p-2 bg-purple-700 text-white rounded text-xl">warehouse</span></span>
-    <span class="flex gap-10"><a href="/search" class="flex items-center gap-2"><svg id="" class="" style="height:1em;vertical-align:-.125em;overflow:visible;" viewBox="0 0 512 512" aria-hidden="true" role="img" xmlns="http://www.w3.org/2000/svg"><g transform="translate(256 256)"><g transform=""><path d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z" fill="currentColor" transform="translate(-256 -256)"></path></g></g></svg>SEARCH</a>
-            <a href="/login" class="flex items-center gap-2"><svg id="" class="" style="height:1em;vertical-align:-.125em;overflow:visible;" viewBox="0 0 640 512" aria-hidden="true" role="img" xmlns="http://www.w3.org/2000/svg"><g transform="translate(256 256)"><g transform=""><path d="M624 448h-80V113.45C544 86.19 522.47 64 496 64H384v64h96v384h144c8.84 0 16-7.16 16-16v-32c0-8.84-7.16-16-16-16zM312.24 1.01l-192 49.74C105.99 54.44 96 67.7 96 82.92V448H16c-8.84 0-16 7.16-16 16v32c0 8.84 7.16 16 16 16h336V33.18c0-21.58-19.56-37.41-39.76-32.17zM264 288c-13.25 0-24-14.33-24-32s10.75-32 24-32 24 14.33 24 32-10.75 32-24 32z" fill="currentColor" transform="translate(-256 -256)"></path></g></g></svg>LOG IN</a></span></span>
+<span id="menu" class="px-4 md:px-10 py-10 flex md:justify-between md:items-center flex-col md:flex-row gap-4 svelte-y9p8wa"><span class="flex justify-between"><a href="/"><span class="flex items-center gap-3"><span class="text-xl tracking-widest font-light hidden md:inline">po/iw</span> <span class="font-bold p-2 border text-purple-700 border-purple-700 md:border-none md:bg-purple-700 md:text-white rounded text-xl">warehouse</span></span></a>
+    </span>
+    <span class="flex gap-10 flex-col-reverse md:flex-row mt-5 md:mt-0"><span class="flex justify-between md:gap-10"><a href="/" class="flex items-center gap-2"><svg id="" class="" style="height:1em;vertical-align:-.125em;overflow:visible;" viewBox="0 0 512 512" aria-hidden="true" role="img" xmlns="http://www.w3.org/2000/svg"><g transform="translate(256 256)"><g transform=""><path d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z" fill="currentColor" transform="translate(-256 -256)"></path></g></g></svg>SEARCH</a>
+                <a href="/login" class="flex items-center gap-2 cursor-pointer"><svg id="" class="" style="height:1em;vertical-align:-.125em;overflow:visible;" viewBox="0 0 512 512" aria-hidden="true" role="img" xmlns="http://www.w3.org/2000/svg"><g transform="translate(256 256)"><g transform=""><path d="M487.4 315.7l-42.6-24.6c4.3-23.2 4.3-47 0-70.2l42.6-24.6c4.9-2.8 7.1-8.6 5.5-14-11.1-35.6-30-67.8-54.7-94.6-3.8-4.1-10-5.1-14.8-2.3L380.8 110c-17.9-15.4-38.5-27.3-60.8-35.1V25.8c0-5.6-3.9-10.5-9.4-11.7-36.7-8.2-74.3-7.8-109.2 0-5.5 1.2-9.4 6.1-9.4 11.7V75c-22.2 7.9-42.8 19.8-60.8 35.1L88.7 85.5c-4.9-2.8-11-1.9-14.8 2.3-24.7 26.7-43.6 58.9-54.7 94.6-1.7 5.4.6 11.2 5.5 14L67.3 221c-4.3 23.2-4.3 47 0 70.2l-42.6 24.6c-4.9 2.8-7.1 8.6-5.5 14 11.1 35.6 30 67.8 54.7 94.6 3.8 4.1 10 5.1 14.8 2.3l42.6-24.6c17.9 15.4 38.5 27.3 60.8 35.1v49.2c0 5.6 3.9 10.5 9.4 11.7 36.7 8.2 74.3 7.8 109.2 0 5.5-1.2 9.4-6.1 9.4-11.7v-49.2c22.2-7.9 42.8-19.8 60.8-35.1l42.6 24.6c4.9 2.8 11 1.9 14.8-2.3 24.7-26.7 43.6-58.9 54.7-94.6 1.5-5.5-.7-11.3-5.6-14.1zM256 336c-44.1 0-80-35.9-80-80s35.9-80 80-80 80 35.9 80 80-35.9 80-80 80z" fill="currentColor" transform="translate(-256 -256)"></path></g></g></svg>ADMININSTRATION</a></span></span>
+</span>
 
 
-<section class="flex flex-col px-10 py-10"><button class="p-3">NEW ITEM</button>
-	<div class="flex items-center justify-center border p-5 gap-4"><svg id="" class="" style="height:1em;vertical-align:-.125em;overflow:visible;" viewBox="0 0 512 512" aria-hidden="true" role="img" xmlns="http://www.w3.org/2000/svg"><g transform="translate(256 256)"><g transform=""><path d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z" fill="currentColor" transform="translate(-256 -256)"></path></g></g></svg>
-<input type="text" id="search" placeholder="Type a search query or enter an item's barcode" class="w-full" value=""></div>
+<section class="flex flex-col px-4 md:px-10 py-10"><div class="flex items-center justify-center border p-5 gap-4 rounded"><svg id="" class="" style="height:1em;vertical-align:-.125em;overflow:visible;" viewBox="0 0 512 512" aria-hidden="true" role="img" xmlns="http://www.w3.org/2000/svg"><g transform="translate(256 256)"><g transform=""><path d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z" fill="currentColor" transform="translate(-256 -256)"></path></g></g></svg>
+<input type="text" id="search" placeholder="Type to search or enter barcode" class="w-full" value=""></div>
+	<span class="flex gap-2 mt-3 ml-1"><input type="checkbox" checked><p class="text-gray-400">Auto-detect barcodes and redirect to item</p></span>
+
+
 	<div>
 
-<div class="flex flex-col gap-2 mt-4" id="results"><a href="/items/324234"><span class="p-3 bg-gray-50 rounded tracking-widest flex justify-between"><span>ΠΟΛΥΠΡΙΖΟ ΣΟΥΚΟ ΤΡΙΠΛΟ</span><span>#324234</span></span></a><a href="/items/324234"><span class="p-3 bg-gray-50 rounded tracking-widest flex justify-between"><span>ΠΟΛΥΠΡΙΖΟ ΣΟΥΚΟ ΤΡΙΠΛΟ</span><span>#324234</span></span></a><a href="/items/324234"><span class="p-3 bg-gray-50 rounded tracking-widest flex justify-between"><span>ΠΟΛΥΠΡΙΖΟ ΣΟΥΚΟ ΤΡΙΠΛΟ</span><span>#324234</span></span></a></div></div>
+</div>
 </section>
 
 
 
 	
 </div>
+		<p id="footer" class="mt-16 text-gray-400 text-center p-2">Open Source/FOSS project made by po/iw. Find the source code in our <a href="https://github.com/poiw-org" target="_blank" class="font-bold">Github page</a>.</p>
+
 	</body>
 </html>
+<style>
+	    @media print {
+        #footer{
+            display:none !important;
+        }
+    }
+</style>

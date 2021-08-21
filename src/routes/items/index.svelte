@@ -6,7 +6,6 @@ export const router = browser;
 export const prerender = false;
 
 import { page } from "$app/stores";
-const { _id } = $page.params;
 
 import Item from "../../lib/entities/item"
 import Loading from "../../lib/loading.svelte"
@@ -18,7 +17,7 @@ import JsBarcode from "jsbarcode"
 let isAuthenticated = false;
 let item: any
 let processing = true;
-
+let _id
 let checkOut = async () => {
     if (confirm('Are you sure you want to checkout this item?')) {
         let token = await auth.getToken()
@@ -53,8 +52,12 @@ let deleteItem = async () => {
 }
 
 onMount(async ()=>{
+    _id = $page.query.get("_id")
+
+    // if(!_id) window.location = "/"
     isAuthenticated = await auth.isAuthenticated()
     item = await Item.getById(_id, true)
+    
     processing = false
     setTimeout(()=>{
         JsBarcode(`#barcode-${item._id}`, item._id, {
@@ -111,7 +114,7 @@ onMount(async ()=>{
         </div>
             {#if isAuthenticated}
             <div class="flex gap-4 pt-20">
-                <a href={`/items/edit/${item._id}`}><button class="border p-3 border-blue-500 text-blue-500">EDIT</button></a>
+                <a href={`/items/edit?_id=${item._id}`}><button class="border p-3 border-blue-500 text-blue-500">EDIT</button></a>
                 {#if !item.checkOut}
                 <button on:click={checkOut} class="border p-3 border-yellow-500 text-yellow-500">CHECK-OUT</button>
                 {/if}
@@ -119,16 +122,6 @@ onMount(async ()=>{
 
             </div>
             {/if}
-
-        {:else}
-
-        {#if isAuthenticated}
-            <span class="hidden">{window.location = `/items/create?id=${_id}`}</span>
-            <Loading/>
-
-        {:else}
-        The item with id <span class="font-bold text-lg">{_id}</span> was not found.
-        {/if}
     {/if}
     {/if}
 </div>

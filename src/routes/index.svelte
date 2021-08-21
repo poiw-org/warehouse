@@ -30,19 +30,22 @@
 			processing = true;
 			try{
 				let item = await Item.getById(searchQuery, true)
+				processing = false
 				if(item){
+					processing = true;
 					location.href = `/items?_id=${searchQuery}`
-					
 					return
 				}
-				else if(isAuthenticated) location.href = `/items/create?_id=${searchQuery}`;
+				else if(isAuthenticated){
+					processing = true;
+					location.href = `/items/create?_id=${searchQuery}`;
+				}
 							
 				else alert(`The item with barcode ${searchQuery} doesn\'t exist.`)
 			}catch(e) {
 				alert(e)
 			}
-			processing = false
-			detectedBarcode = false
+			setTimeout(()=>{detectedBarcode = false},2000)
 		}
 		processing = true;
 		let {data} = await API.post(`/search`, {query: searchQuery})

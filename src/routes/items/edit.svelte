@@ -43,7 +43,7 @@
                 }
             }
         )
-        if(data === true) window.location = `/items/${_id}`
+        if(data === true) window.location = `/items?_id=${_id}`
         else alert(data)
         processing = false;
 

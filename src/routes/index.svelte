@@ -68,18 +68,20 @@
 		setInterval(()=>{
 			document.getElementById("search").focus()
 		},1000)
-		let getShelf = $page.query.get("shelf")
 		processing = true;
+
+		let {data} = await API.get(`/latest`);
+		latestItems = data.map(item => Item.fromJSON(item));
+		let getShelf = $page.query.get("shelf");
 		if(getShelf){
-			searchQuery = `:shelf=${getShelf}`
-			await search()
-			return
+			searchQuery = `:shelf=${getShelf}`;
+			await search();
+			return;
 		}
-		let {data} = await API.get(`/latest`)
-		processing = false
-		latestItems = data.map(item => Item.fromJSON(item))
-		items = latestItems
-		isAuthenticated = await auth.isAuthenticated()
+
+		items = latestItems;
+		isAuthenticated = await auth.isAuthenticated();
+		processing = false;
 	})
 
 	function shorten(text,max) {

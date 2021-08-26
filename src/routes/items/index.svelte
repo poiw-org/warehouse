@@ -97,7 +97,7 @@ onMount(async ()=>{
             </span>
             <span class="flex flex-col">
                 <span class="text-sm font-light">SHELF</span> 
-                {#if item.shelf != "null" && typeof item.shelf != "undefined" && item.shelf != "" && item.shelf != null}<a href="/" class="text-blue-600"><span  class="font-bold text-lg">{item.shelf}</span></a> {:else} - {/if}
+                {#if item.shelf != "null" && typeof item.shelf != "undefined" && item.shelf != "" && item.shelf != null}<a href={`/?shelf=${item.shelf}`} class="text-blue-600"><span  class="font-bold text-lg">{item.shelf}</span></a> {:else} - {/if}
             </span>
             <span class="flex flex-col">
                 <span class="text-sm font-light">CHECK-IN</span> 

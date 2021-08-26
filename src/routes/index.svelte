@@ -10,6 +10,7 @@
 	import Loading from "../lib/loading.svelte"
 	import {onMount} from "svelte"
 	import auth from "../lib/auth/authService"
+    import { page } from "$app/stores";
 
 	let isAuthenticated = false;
 	let searchQuery = "";
@@ -24,6 +25,7 @@
 			items = latestItems
 			return
 		}
+
 		let isOnlyNumbers = /^\d+$/.test(searchQuery)
 		if(isOnlyNumbers && searchQuery.length == 12 && autoDetectBarcodes && !detectedBarcode) {
 			detectedBarcode= true;
@@ -48,6 +50,15 @@
 			setTimeout(()=>{detectedBarcode = false},2000)
 		}
 		processing = true;
+
+		if(searchQuery.includes(":shelf=")){
+			let query = (searchQuery.split("="))[1]
+			let {data} = await API.post(`/search`, {shelf: query})
+			processing = false
+			items = data.map(item => Item.fromJSON(item))
+			return 
+		}
+
 		let {data} = await API.post(`/search`, {query: searchQuery})
 		processing = false
 		items = data.map(item => Item.fromJSON(item))
@@ -57,7 +68,13 @@
 		setInterval(()=>{
 			document.getElementById("search").focus()
 		},1000)
+		let getShelf = $page.query.get("shelf")
 		processing = true;
+		if(getShelf){
+			searchQuery = `:shelf=${getShelf}`
+			await search()
+			return
+		}
 		let {data} = await API.get(`/latest`)
 		processing = false
 		latestItems = data.map(item => Item.fromJSON(item))

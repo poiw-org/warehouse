@@ -15,9 +15,9 @@ import API from "../../lib/api"
 import JsBarcode from "jsbarcode"
 
 let isAuthenticated = false;
-let item: any
+let item: any ={}
 let processing = true;
-let _id
+let _id = $page.query.get("_id")
 let checkOut = async () => {
     if (confirm('Are you sure you want to checkout this item?')) {
         let token = await auth.getToken()
@@ -60,7 +60,7 @@ onMount(async ()=>{
     
     processing = false
     setTimeout(()=>{
-        JsBarcode(`#barcode-${item._id}`, item._id, {
+        JsBarcode(`#barcode-${item?._id}`, item?._id, {
             lineColor: "#000",
             text: (item?._id?.toString().match(/.{1,3}/g)).toString().replaceAll(",","-"),
             flat: true,

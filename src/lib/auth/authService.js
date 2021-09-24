@@ -2,7 +2,8 @@ import createAuth0Client from "@auth0/auth0-spa-js";
 
 const config = {
     domain: "poiw.eu.auth0.com",
-    clientId: "FX1Is0mT4DyDfzh4MsE3xtBk4Wer7ioK"
+    clientId: "FX1Is0mT4DyDfzh4MsE3xtBk4Wer7ioK",
+    audience: "https://api.poiw.org"
   };
   
 let auth = {
@@ -10,7 +11,7 @@ let auth = {
         let auth0Client = await createAuth0Client({
             domain: config.domain,
             client_id: config.clientId,
-            audience: process.env.AUTH0_AUDIENCE,
+            audience: config.audience,
             redirect_uri: process.env.NODE_ENV == 'production' ? "https://warehouse.poiw.org/login" :"http://localhost:3000/login",
             cacheLocation: 'localstorage',
             scope: "openid email"

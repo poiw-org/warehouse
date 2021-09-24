@@ -10,7 +10,7 @@ let auth = {
         let auth0Client = await createAuth0Client({
             domain: config.domain,
             client_id: config.clientId,
-            audience: 'https://api.warehouse.poiw.org',
+            audience: process.env.AUTH0_AUDIENCE,
             redirect_uri: process.env.NODE_ENV == 'production' ? "https://warehouse.poiw.org/login" :"http://localhost:3000/login",
             cacheLocation: 'localstorage',
             scope: "openid email"
